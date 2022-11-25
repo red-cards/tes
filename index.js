@@ -78,9 +78,24 @@ const taskOpen=()=>{
     $("#box").removeClass("hidden");
     $("#fab-task-active").removeClass("hidden");
     $("#fab-task").addClass("hidden");
+    let startDate = new Date('21/11/2022');
+    let timeNow=new Date;
+    let finishDate = new Date("1/12/2022");
+    let diff=Math.ceil((finishDate.getTime()-timeNow.getTime())/(1000*3600*24));
     $.getJSON("https://jsonplaceholder.typicode.com/todos?userId=1",function(datas){
         datas.map((data,index)=>{
             const template=$(".task-container-new");
+            if(data.completed){
+                template.find(".form-check-input").prop("checked",true)
+                template.addClass("done")
+                
+            }else{
+                template.find(".info-start-countdown").text("21/11/2022")
+                template.find(".info-task-countdown").text(diff+" Days left")
+                template.find(".collapsed-toogle").attr("aria-controls","collapse-1")
+            }
+            template.find(".form-check-input").val(finishDate.getDate+"/"+finishDate.getMonth+"/"+finishDate.getFullYear);
+            template.find("")
         });
     });
 }
@@ -104,7 +119,7 @@ const allClose=()=>{
 }
 $(document).ready(function(){
     loading()
-    $(".date-task").datepicker();
+    $(".date-task").datepicker({});
     console.log(user);
     $("#fab-group").hover(function(){
         fabOpen();

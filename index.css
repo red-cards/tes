@@ -347,6 +347,8 @@ body{
 .rotating {
     animation: rotating 2s linear infinite;
 }
-::-webkit-datetime-edit-fields-wrapper{
-    padding: 50px;
+
+.task-container .info-task-title{
+    color: #828282;
+    text-decoration:line-through;
 }
