@@ -1,0 +1,352 @@
+
+@font-face {
+    font-family: "lotoBold";
+    src: url(Lato-Bold.ttf);
+}
+@font-face {
+    font-family: "lotoReg";
+    src: url(Lato-Regular.ttf);
+}
+body{
+    transition: 0.3s;
+}
+body{
+    background-color: #262626;
+    font-family: "lotoReg";
+    font-size: 14px;
+}
+#task-list-main{
+    overflow-y: scroll;
+}
+#search{
+    width: 666px;
+    height: Hug (32px);
+    border-radius: 5px;
+    padding: 0px 10px ;
+    border: 1px solid #828282;
+}
+#search-input{
+    border: none;
+    width: 600px;
+    height: 40px;
+}
+#container-chat{
+    height: 657px;
+    width: 100%;
+}
+.chat-group{
+    margin: 22px 0;
+}
+.chat-private{
+    margin: 22px 0;
+}
+.chat-group-title{
+    color: #2F80ED;
+    font-family: "lotoBold";
+    font-size: 16px;
+}
+.chat-group-date{
+    color: #4f4f4f;
+    font-family: "lotoReg";
+    font-size: 16px;
+}
+.break{
+    height: 1px;
+    width: 100%;
+    background-color: #828282;
+}
+.o-color .ballon-comment{
+    background-color: #F8F8F8;
+}
+#connect-message{
+    margin: 0 32px;
+    background-color: #E9F3FF;
+    padding: 10px;
+    border-radius: 5px;
+    color: #4F4F4F;
+    font-family: "lotoBold";
+    font-size: 16px;
+}
+.o-color .comment-name{
+    color: #2F80ED;
+    font-family: "lotoBold";
+    font-size: 16px;
+}
+.c-color-1 .ballon-comment{
+    background-color: #FCEED3;
+}
+.c-color-1 .comment-name{
+    color: #E5A443;
+    font-family: "lotoBold";
+    font-size: 16px;
+}
+.c-color-2 .ballon-comment{
+    background-color: #D2F2EA;
+}
+.c-color-2 .comment-name{
+    color:#43B78D;
+    font-family: "lotoBold";
+    font-size: 16px;
+}
+#new-notif{
+    bottom: 0;
+    left: 50%;
+    margin-left: -5%;
+    background-color: #E9F3FF;
+    color: #2F80ED;
+    font-family: "lotoBold";
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.chat-textbox{
+    padding: 10px 32px 24px 32px;
+}
+.option{
+    background: none;
+    border: none;
+}
+.option-edit-btn{
+    color:#2F80ED;
+    font-family: "lotoReg";
+    font-size: 14px;
+}
+.option-delete-btn{
+    color:#EB5757;
+    font-family: "lotoReg";
+    font-size: 14px;
+}
+.chat-textbox-text{
+    padding: 0 16px;
+    border: 1px solid #828282;
+    height: 40px;
+    border-radius: 5px;
+    font-family: "lotoReg";
+    font-size: 16px;
+}
+.chat-textbox-btn{
+    padding: 0 13px;
+    margin-left: 13px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #2F80ED;
+    color: white;
+    border: none;
+    font-family: "lotoBold";
+    font-size: 16px;
+}
+.comment-me .comment-name{
+    color: #9B51E0;
+    font-family: "lotoBold";
+    font-size: 16px;
+    text-align: end;
+}
+.comment-me .ballon-comment{
+    background-color: #EEDCFF;
+}
+.ballon-comment{
+    font-family: "lotoReg";
+    font-size: 14px;
+    border-radius: 5px;
+    min-width: 0px;
+    max-width: 75%;
+    padding: 10px;
+}
+.break-date-d{
+    width: 300px;
+    text-align: center;
+    font-family: "lotoBold";
+    font-size: 16px;
+}
+.break-new-d{
+    color: #EB5757;
+    width: 300px;
+    text-align: center;
+    font-family: "lotoBold";
+    font-size: 16px;
+}
+.break-new .break{
+    background-color: #EB5757;
+}
+.chat-group-last-p{
+    color: #4f4f4f;
+    font-family: "lotoBold";
+    font-size: 14px;
+}
+#isi-chat{
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    position: absolute;
+    z-index: 0;
+}
+.chat-isi{
+    padding: 24px 32px;
+    overflow-y: scroll;
+}
+#task-dropdown{
+    border: 1px solid #828282
+}
+#group-chat{
+    background-color: white;
+    height: 100%; 
+    width: 100%;
+    border-radius: 5px;
+}
+.task-container{
+    margin:22px 0;
+}
+.checkbox-task-container{
+    margin-right: 22px;
+}
+.form-check-input{
+    height: 18px !important;
+    width: 18px !important;
+}
+.collapsed{
+    margin-left: 36px;
+}
+.collapsed-icon-time >img{
+    width: 18px;
+    height: 18px;
+}
+.collapsed-icon-comment>img{
+    width: 18px;
+    height: 18px;
+}
+.date-task{
+    width:193px;
+    height: 40px;
+    border-radius: 5px;
+}
+.task-container input{
+    height: 40px;
+    border-radius: 5px;
+}
+.form-title-input{
+    width: 380px;
+    font-family: "lotoReg";
+    font-size: 14px;
+}
+.desc-task{
+    width: 100%;
+    border-radius: 5px;
+    resize:none;
+}
+.collapsed > div{
+    margin:6px 0;
+}
+.info-task-title{
+    font-family: "lotoBold";
+    font-size: 16px;
+}
+.info-task-countdown{
+    color: #EB5757;
+    margin: 0 5px;
+}
+.info-start-countdown{
+    margin: 0 5px;
+}
+.header-task-container{
+    font-family: "lotoReg";
+    font-size: 14px;
+}
+#task-list{
+    background-color: white;
+    height: 100%; 
+    width: 100%;
+    border-radius: 5px;
+    padding: 24px 32px;
+}
+#private-chat{
+    background-color: white;
+    height: 100%; 
+    width: 100%;
+    border-radius: 5px;
+}
+.chat-group-last-c{
+    color: #4f4f4f;
+    font-family: "lotoReg";
+    font-size: 14px;
+    text-overflow: ellipsis;
+    max-width: 500px;
+    max-height: 50px;
+}
+.pp-size{
+    height: 34px;
+    width: 34px;
+    border-radius: 20px;
+}
+.loading{
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    padding: auto;
+    z-index: 4;
+    position: absolute;
+}
+#i-loading{
+    height: 85.41px;
+    width: 85.41px;
+    margin: 0 auto;
+}
+.loading span{
+    margin: 0 auto;
+}
+#box{
+    right: 34px;
+    bottom: 110px;
+    background-color: #FFFFFF;
+    padding: 24px 32px;
+    border-radius: 2px;
+    height: 737px;
+    width: 734px;
+
+}
+.fab-size-m{
+    width: 68px;
+    height: 68px;
+    
+}
+.hidden{
+    display: none !important;
+}
+.fab-pos{
+    bottom: 27px !important;
+    right: 34px !important;
+}
+
+#toogles{
+    /*bottom: 31px;
+    right: 128px;*/
+    bottom: 27px;
+    right: 34px;
+    transition: 0.3s;
+
+}
+.fab-size-s{
+    width: 60px;
+    height: 60px;margin-left: 26px;
+}
+#toogles div{
+    margin-left: -50px;
+    transition: 0.3s;
+}
+.complete input{
+    pointer-events:none;
+}
+@keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    animation: rotating 2s linear infinite;
+}
+::-webkit-datetime-edit-fields-wrapper{
+    padding: 50px;
+}

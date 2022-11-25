@@ -1,0 +1,374 @@
+<html>
+    <head>
+        <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="index.css" rel="stylesheet"/>
+    <link href="jquery-ui.css" rel="stylesheet"/>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/13318e4927.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="index.js"></script>
+    </head>
+    <body>
+        <div class="position-absolute hidden" id="box">
+            <div id="chat-list" class="hidden">
+                <div class="input-group d-flex flex-row-reverse" id="search">
+                    <div class="input-icon">
+                        <i class="fa-solid fa-magnifying-glass" style="height: 12px;width: 12px;margin-top: 13px;"></i>
+                    </div>
+                    <input  placeholder="Search" id="search-input"/>
+                </div>
+                <div id="container-chat" class="position-relative">
+                    <div id="isi-chat"> 
+                                              
+                    </div>
+                    <div id="loading-chat" class="align-middle d-flex flex-column justify-content-center loading position-absolute">
+                        <img id="i-loading" class="i-loading rotating" src="loading.png"/>
+                        <span>Loading Chats...</span>
+                    </div>
+                </div>
+            </div>
+            <div id="group-chat" class="position-absolute start-0 top-0 d-flex flex-column hidden" >
+                <div class="chat-header">
+                    <div class="chat-header-main d-flex flex-row" style="padding: 24px;">
+                        <div class="chat-header-back">
+                            <img src="arrow_back_24px.png"  style="margin-top:10px ;"/>
+                        </div>
+                        <div class="chat-header-title-box flex-grow-1 d-flex flex-column" style="margin-left: 16px;">
+                            <div class="chat-header-title chat-group-title">asdfaasfasdfasdasdf</div>
+                            <div class="chat-header-people chat-group-last-p">3 Participant</div>
+                        </div>
+                        <div class="chat-header-close text-center">
+                            <img src="close_24px.png" style="margin-top:10px ;"/>
+                        </div>
+                    </div>
+                    <div class="break"></div>
+                </div>
+                <div id="isi-group-chat" class="chat-isi flex-grow-1 d-flex flex-column position-relative">
+                    <div class="comment-other c-color-1 d-flex flex-column">
+                        <div class="comment-name">
+                            Adi Nugroho
+                        </div>
+                        <div class="isi-comment d-flex flex-row">
+                            <div class="ballon-comment d-flex flex-column" >
+                            <span>asdfalskd;flaks;dlfk;aslkdf;aslkfd;lka;lsdkf amflkasmflkaf slkdfsalk dflsakdf lksa fdlka sdlfk asldfk alsk dflkas fdlak sfdlk asldf al</span>
+                            <span class="ballon-comment-time">18:00</span>
+                            </div>
+                            <div class="option-comment dropdown">
+                                <button class="option" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="option.png" style="margin: 5px;"/>
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item option-edit-btn" href="#">Edit</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item option-delete-btn" href="#">Delete</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-me d-flex flex-column">
+                        <div class="comment-name">
+                            You
+                        </div>
+                        <div class="isi-comment d-flex flex-row-reverse">
+                            <div class="ballon-comment d-flex flex-column" >
+                            <span>asdfalskd;flaks;dlfk;aslkdf;aslkfd;lka;lsdkf amflkasmflkaf slkdfsalk dflsakdf lksa fdlka sdlfk asldfk alsk dflkas fdlak sfdlk asldf al</span>
+                            <span class="ballon-comment-time">18:00</span>
+                            </div>
+                            <div class="option-comment dropdown">
+                                <button class="option" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="option.png" style="margin: 5px;"/>
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item option-edit-btn" href="#">Edit</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item option-delete-btn" href="#">Delete</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="comment-other c-color-2 d-flex flex-column">
+                        <div class="comment-name">
+                            Adi Nugroho
+                        </div>
+                        <div class="isi-comment d-flex flex-row">
+                            <div class="ballon-comment d-flex flex-column" >
+                            <span>asdfalskd;flaks;dlfk;aslkdf;aslkfd;lka;lsdkf amflkasmflkaf slkdfsalk dflsakdf lksa fdlka sdlfk asldfk alsk dflkas fdlak sfdlk asldf al</span>
+                            <span class="ballon-comment-time">18:00</span>
+                            </div>
+                            <div class="option-comment dropdown">
+                                <button class="option" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="option.png" style="margin: 5px;"/>
+                                </button>
+                                <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item option-edit-btn" href="#">Edit</a></li>
+                                  <li><hr class="dropdown-divider"></li>
+                                  <li><a class="dropdown-item option-delete-btn" href="#">Delete</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="new-notif" class="position-absolute">New Message</div>
+                </div>
+                <div class="chat-textbox d-flex flex-row">
+                    <input class="flex-grow-1" id="input-group-chat" class="chat-textbox-text" placeholder="Type a new message"/>
+                    <button id="btn-group" class="chat-textbox-btn">Send</button>
+                </div>
+            </div>
+            <div id="private-chat"  class="position-absolute start-0 top-0 d-flex flex-column hidden">
+                <div class="chat-header">
+                    <div class="chat-header-main d-flex flex-row" style="padding: 24px;">
+                        <div class="chat-header-back">
+                            <img src="arrow_back_24px.png"  style="margin-top:5px ;"/>
+                        </div>
+                        <div class="chat-header-title-box flex-grow-1 d-flex flex-column" style="margin-left: 16px;">
+                            <div class="chat-header-title chat-group-title align-middle">asdfaasfasdfasdasdf</div>
+                        </div>
+                        <div class="chat-header-close text-center">
+                            <img src="close_24px.png" style="margin-top:5px ;"/>
+                        </div>
+                    </div>
+                </div>
+                    <div id="chat-isi-private" class="chat-isi flex-grow-1 d-flex flex-column position-relative">
+                        <div class="comment-other o-color d-flex flex-column">
+                            <div class="comment-name">
+                                Adi Nugroho
+                            </div>
+                            <div class="isi-comment d-flex flex-row">
+                                <div class="ballon-comment d-flex flex-column" >
+                                <span>asdfalskd;flaks;dlfk;aslkdf;aslkfd;lka;lsdkf amflkasmflkaf slkdfsalk dflsakdf lksa fdlka sdlfk asldfk alsk dflkas fdlak sfdlk asldf al</span>
+                                <span class="ballon-comment-time">18:00</span>
+                                </div>
+                                <div class="option-comment dropdown">
+                                    <button class="option" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="option.png" style="margin: 5px;"/>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item option-edit-btn" href="#">Edit</a></li>
+                                      <li><hr class="dropdown-divider"></li>
+                                      <li><a class="dropdown-item option-delete-btn" href="#">Delete</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-me d-flex flex-column">
+                            <div class="comment-name">
+                                Adi Nugroho
+                            </div>
+                            <div class="isi-comment d-flex flex-row-reverse">
+                                <div class="ballon-comment d-flex flex-column" >
+                                <span>asdfalskd;flaks;dlfk;aslkdf;aslkfd;lka;lsdkf amflkasmflkaf slkdfsalk dflsakdf lksa fdlka sdlfk asldfk alsk dflkas fdlak sfdlk asldf al</span>
+                                <span class="ballon-comment-time">18:00</span>
+                                </div>
+                                <div class="option-comment dropdown">
+                                    <button class="option" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="option.png" style="margin: 5px;"/>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                      <li><a class="dropdown-item option-edit-btn" href="#">Edit</a></li>
+                                      <li><hr class="dropdown-divider"></li>
+                                      <li><a class="dropdown-item option-delete-btn" href="#">Delete</a></li>
+                                    </ul>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="connect-message" class=" d-flex flex-row">
+                    <div>
+                        <img src="loading-connect.png" class="i-loading rotating"/>
+                    </div>
+                    <span class="justify-content-center" style="margin-left: 16px;margin-top:5px;">
+                        Please wait while we connect you with one of our team ...
+                    </span>
+                </div>
+                <div class="chat-textbox d-flex flex-row">
+                    <input class="flex-grow-1" id="input-private-chat" class="chat-textbox-text" placeholder="Type a new message"/>
+                    <button id="btn-private" class="chat-textbox-btn">Send</button>
+                </div>
+            </div>
+            <div id="task-list"  class="hidden position-absolute start-0 top-0 d-flex flex-column ">
+                <div id="task-list-btn-group" class=" d-flex flex-row">
+                    <div class="dropdown flex-grow-1 d-flex flex-row justify-content-around">
+                        <button class="btn dropdown-toggle" id="task-dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          My Task
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="#">Personal Errands</a></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <li><a class="dropdown-item" href="#">Urgent To-Do</a></li>
+                        </ul>
+                        <div></div>
+                      </div>
+                    <button id="new-task-btn"class="btn btn-primary">New Task</button>
+                </div>
+                <div id="task-list-main" class="flex-grow-1 position-relative">
+                    <div class="align-middle d-flex flex-column justify-content-center loading hidden">
+                        <img id="i-loading" class="i-loading rotating" src="loading.png"/>
+                        <span>Loading Task List...</span>
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="task-detail" class="position-absolute start-0 top-0 d-flex flex-column">
+            </div>
+        </div>
+        <div id="fab-group">
+            <div id="toogles" class="position-absolute d-flex flex-row">
+                <div style="background-image:url(chat.png); background-size: cover;" id="fab-chat" class="fab-size-s"></div>
+                <div style="background-image:url(task.png); background-size: cover;" id="fab-task" class="fab-size-s"></div>
+            </div>
+            <div  id="fab-main" class="position-absolute fab-size-m fab-pos">
+                <div class="fab-size-m float-end" style="background-color:#2F80ED; text-align: center; vertical-align: middle; border-radius: 50px;">
+                    <img src="Shape (Stroke).svg" class="justify-content-center" style="margin-top: 18px;"/>
+                </div>
+            </div>
+            <div id="fab-task-active" class="position-absolute fab-pos hidden">
+                <div class="fab-size-m float-start" style="background-color:#4F4F4F;border-radius: 50px;margin-right: -58px;">
+                </div>
+                <div class="fab-size-m float-end" style="background-color:#F8B76B; text-align: center; vertical-align: middle; border-radius: 50px;">
+                    <img src="chrome_reader_mode_24px.svg" class="justify-content-center" style="margin-top: 21px;"/>
+                </div>   
+            </div>
+            <div id="fab-chat-active" class="position-absolute fab-pos hidden">
+                <div class="fab-size-m float-start" style="background-color:#4F4F4F;border-radius: 50px;margin-right: -58px;">
+                </div>
+                <div class="fab-size-m float-end" style="background-color:#8785FF; text-align: center; vertical-align: middle; border-radius: 50px;">
+                    <img src="question_answer_24px.svg" class="justify-content-center" style="margin-top: 21px;"/>
+                </div>
+                
+            </div>
+        </div>
+        <!-- template comment-other-->
+        <div class="d-flex flex-column prefix-comment hidden">
+            <div class="comment-name">
+                You
+            </div>
+            <div class="isi-comment d-flex flex-row">
+                <div class="ballon-comment d-flex flex-column" >
+                <span class="ballon-comment-text">asdfalskd;flaks;dlfk;aslkdf;aslkfd;lka;lsdkf amflkasmflkaf slkdfsalk dflsakdf lksa fdlka sdlfk asldfk alsk dflkas fdlak sfdlk asldf al</span>
+                <span class="ballon-comment-time">18:00</span>
+                </div>
+                <div class="option-comment dropdown">
+                    <button class="option" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="option.png" style="margin: 5px;"/>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item option-reply-btn" href="#">Reply</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- template break-date-->
+        <div class="prefix-break-date break-date d-flex flex-row hidden">
+            <div class="break align-self-center"></div>
+            <div class="flex-grow-1 break-date-d">1 Januari 2022</div>
+            <div class="break align-self-center"></div>
+        </div>
+        <!-- template break-new -->
+        <div class="prefix-break-new break-new d-flex flex-row hidden">
+            <div class="break align-self-center"></div>
+            <div class="flex-grow-1 break-new-d">New Message</div>
+            <div class="break align-self-center"></div>
+        </div>
+        <!-- template chat comment-you -->
+        <div class="d-flex flex-column prefix-comment-you hidden">
+            <div class="comment-name">
+                You
+            </div>
+            <div class="isi-comment d-flex flex-row-reverse">
+                <div class="ballon-comment d-flex flex-column" >
+                <span class="ballon-comment-text">asdfalskd;flaks;dlfk;aslkdf;aslkfd;lka;lsdkf amflkasmflkaf slkdfsalk dflsakdf lksa fdlka sdlfk asldfk alsk dflkas fdlak sfdlk asldf al</span>
+                <span class="ballon-comment-time">18:00</span>
+                </div>
+                <div class="option-comment dropdown">
+                    <button class="option" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="option.png" style="margin: 5px;"/>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item option-edit-btn" href="#">Edit</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item option-delete-btn" href="#">Delete</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- template break-->
+        <div class="break new-break hidden"></div>
+        <!-- template chat list-->
+        <div class="chat-group new-chat-list d-flex position-relative hidden">
+            <div class="chat-group-photo position-relative" style="width: 51px;height: 34px;margin-right:16px">
+                <div class="pp-size position-absolute" style="background-color: #E0E0E0;"><img src="person_abu.png" style="height: 12px;width: 12px; margin:11px;"/></div>
+                <div class="pp-size position-absolute end-0" style="background-color: #2F80ED;"><img src="person_putih.png" style="height: 12px;width: 12px; margin:11px;"/></div>
+            </div>
+            <div class="chat-group-body flex-grow-1 d-flex flex-column">
+                <div class="d-flex flex-row">
+                    <div class="chat-group-title">jalskjflkasjdflkas</div>
+                    <div class="chat-group-date" style="margin-left: 16px;">adfpasdkfopakf</div>
+                </div>
+                <div class="chat-group-last-p">aoskdpofaposdkf</div>
+                <div class="chat-group-last-c">aoskpasodkfpoaskf</div>
+            </div>
+            <div class="chat-group-notif position-relative">
+                <div style="height:10px;width: 10px;background-color: red;border-radius:10px;right: 10px;" class="position-absolute bottom-0">
+                </div>
+            </div>
+        </div>
+        <!-- TEMPLATE TASK KONTAINER-->
+        <div class="task-container hidden task-container-new">
+            <div class="header-task-container d-flex flex-row">
+                <div class="checkbox-task-container">
+                    <input class="form-check-input align-self-center" type="checkbox" value="">
+                </div>
+                <div class="info-task-container d-flex flex-row  flex-grow-1 justify-content-between">
+                    <div class="info-task-title flex-grow-1">
+                        <span style="white-space: break-spaces;">fasdfasfd</span>
+                    </div>
+                    <div class="info-task-countdown">100 Days left</div>
+                    <div class="info-start-countdown">12/12/2022</div>
+                    <div class="collapsed-toogle align-self-center flex-shrink-1"  style="max-width: 40px; flex: 1; text-align: center;" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapse-1"><img src="expand.svg"/></div>
+                    <div class="info-task-more align-self-center flex-shrink-1" style="max-width: 40px;flex: 1; text-align: center;"><img src="option.png"/></div>
+                </div>
+            </div>
+            <div class="collapsed accordion-collapse" id="collapse-1">
+                <div class="d-flex flex-row">
+                    <div class="collapsed-icon-time align-self-center" style="margin-right:20px;"><img src="schedule_24px.svg"/></div>
+                    <div class="collapsed-date-time"><input type="date" class="date-task"/></div>
+                </div>
+                <div class="d-flex flex-row">
+                    <div class="collapsed-icon-comment align-self-center" style="margin-right:20px;"><img src="edit_24px.svg"/></div>
+                    <div class="collapsed-description flex-grow-1"><span>aksmdflkasmdfklmaslkfmalksmdflkamsdflkamsfd;lkasmdfklmaslkdfmalskmdf;lkasmf</span><textarea class="desc-task"></textarea></div>
+                </div>
+            </div>
+        </div>
+        <!-- TEMPLATE TASK KONTAINER BARU-->
+        <div class="task-container new-task-container-new hidden">
+            <div class="header-task-container d-flex flex-row">
+                <div class="checkbox-task-container">
+                    <input class="form-check-input  align-self-center" type="checkbox" value="">
+                </div>
+                <div class="info-task-container d-flex flex-row  flex-grow-1  justify-content-between">
+                    <div class="info-task-title flex-grow-1">
+                        <input class="form-title-input" placeholder="Type Task Title"/>
+                    </div>
+                    <div class="info-task-countdown"></div>
+                    <div class="info-start-countdown"></div>
+                    <div class="collapsed-toogle align-self-center flex-shrink-1"  style="max-width: 40px; flex: 1; text-align: center;"><img src="expand.svg"/></div>
+                    <div class="info-task-more align-self-center flex-shrink-1" style="max-width: 40px;flex: 1; text-align: center;"><img src="option.png"/></div>
+                    
+                </div>
+            </div>
+            <div class="collapsed">
+                <div class="d-flex flex-row">
+                    <div class="collapsed-icon-time align-self-center" style="margin-right:20px;"><img src="schedule_24px.svg"/></div>
+                    <div class="collapsed-date-time"><input type="date" class="date-task"/></div>
+                </div>
+                <div class="d-flex flex-row">
+                    <div class="collapsed-icon-comment align-self-center" style="margin-right:20px;"><img src="edit_24px.svg"/></div>
+                    <div class="collapsed-description flex-grow-1"><textarea class="desc-task"></textarea></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
