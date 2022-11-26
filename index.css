@@ -348,7 +348,13 @@ body{
     animation: rotating 2s linear infinite;
 }
 
-.task-container .info-task-title{
+.done .info-task-title{
     color: #828282;
     text-decoration:line-through;
+}
+#ui-datepicker-div{
+    margin-left: 170px;
+}
+.hide{
+    transform: rotate(180deg);
 }

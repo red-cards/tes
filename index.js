@@ -1,5 +1,6 @@
 var fabT=true;
 const user=$.getJSON( "https://jsonplaceholder.typicode.com/users",function( datas ){return datas;});
+let countClass=0;
 const newMessage=()=>{
     
 };
@@ -78,27 +79,42 @@ const taskOpen=()=>{
     $("#box").removeClass("hidden");
     $("#fab-task-active").removeClass("hidden");
     $("#fab-task").addClass("hidden");
-    let startDate = new Date('21/11/2022');
+    let startDate = new Date('2022-11-21');
     let timeNow=new Date;
-    let finishDate = new Date("1/12/2022");
-    let diff=Math.ceil((finishDate.getTime()-timeNow.getTime())/(1000*3600*24));
+    let finishDate = new Date("2022-12-01");
+    let diff=Math.ceil((timeNow.getTime()-finishDate.getTime())/(1000*3600*24));
     $.getJSON("https://jsonplaceholder.typicode.com/todos?userId=1",function(datas){
         datas.map((data,index)=>{
             const template=$(".task-container-new");
+             countClass=$(".task-container").length;
             if(data.completed){
-                template.find(".form-check-input").prop("checked",true)
-                template.addClass("done")
-                
+                template.find(".form-check-input").prop("checked",true);
+                template.addClass("done");
+                template.find(".info-start-countdown").text("");
+                template.find(".info-task-countdown").text("");
+                template.find(".collapsed").hide();
+                template.find(".collapsed-toogle").addClass("hide");
             }else{
-                template.find(".info-start-countdown").text("21/11/2022")
-                template.find(".info-task-countdown").text(diff+" Days left")
-                template.find(".collapsed-toogle").attr("aria-controls","collapse-1")
+                template.find(".info-start-countdown").text("21/11/2022");
+                template.find(".info-task-countdown").text(diff+" Days left");
+                
             }
-            template.find(".form-check-input").val(finishDate.getDate+"/"+finishDate.getMonth+"/"+finishDate.getFullYear);
-            template.find("")
+            template.find(".collapsed-toogle").attr("aria-controls","collapse-"+countClass);
+            template.find(".collapsed").attr("id","collapse-"+countClass);
+            template.find(".date-task").val(finishDate.getDate()+"/"+(finishDate.getMonth()+1)+"/"+finishDate.getFullYear());
+            template.find(".collapsed-description span").text("No Desciption");
+            template.find(".collapsed-description desc-task").text("");
+            template.find(".info-task-title span").text(data.title);
+            template.clone().removeClass("task-container-new").removeClass("hidden").appendTo("#task-list-main").find(".date-task").datepicker({ dateFormat: 'dd/mm/yy' });
+            if(index<datas.length-1){$(".new-break").clone().removeClass("new-break").removeClass("hidden").appendTo("#task-list-main")}
+            template.find(".collapsed").show();
+            template.find(".collapsed-toogle").removeClass("hide");
+            template.removeClass("done");
+            template.find(".form-check-input").prop("checked",false);
         });
     });
 }
+
 //close task tab
 const taskClose=()=>{
     $("#task-list").addClass("hidden");    
@@ -119,7 +135,12 @@ const allClose=()=>{
 }
 $(document).ready(function(){
     loading()
-    $(".date-task").datepicker({});
+    $(document).on("click",".collapsed-toogle",function(){
+        // alert('asd');
+        var elem_id = $(this).attr('aria-controls');
+        $(this).toggleClass('hide');
+        $('#'+elem_id).slideToggle();
+    });
     console.log(user);
     $("#fab-group").hover(function(){
         fabOpen();
@@ -210,13 +231,22 @@ $(document).ready(function(){
         const taskPre=$(".new-task-container-new");
         const newIdTask=$('.task-container').length;
         const breakLine=$(".new-break");
-
+        countClass+=1;
+        taskPre.find(".collapsed-toogle").attr("aria-controls","collapse-"+countClass);
+        taskPre.find(".collapsed").attr("id","collapse-"+countClass);
         breakLine.clone().removeClass("new-break").removeClass("hidden").appendTo("#task-list-main");
         taskPre.clone().removeClass("new-task-container-new").attr("id","task-"+newIdTask).removeClass("hidden").appendTo("#task-list-main");
+        $(".date-task, .datepicker").datepicker();
 
     });
     $(document).on("click",".option-delete-btn",function(){
         $(this).closest(".comment-me").remove()
     });
-
+    $(document).on("click",".collapsed-icon-comment",function(){
+        $(this).next(".collapsed-description").find("span").toggleClass("hidden");
+        $(this).next(".collapsed-description").find(".desc-task").toggleClass("hidden");
+    });
+    $(document).on("change",".desc-task",function(){
+        $(this).next("span").text($(this).val());
+    });
 });
