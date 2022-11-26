@@ -82,7 +82,7 @@ const taskOpen=()=>{
     let startDate = new Date('2022-11-21');
     let timeNow=new Date;
     let finishDate = new Date("2022-12-01");
-    let diff=Math.ceil((timeNow.getTime()-finishDate.getTime())/(1000*3600*24));
+    let diff=Math.ceil((finishDate.getTime()-timeNow.getTime())/(1000*3600*24));
     $.getJSON("https://jsonplaceholder.typicode.com/todos?userId=1",function(datas){
         datas.map((data,index)=>{
             const template=$(".task-container-new");
@@ -103,6 +103,7 @@ const taskOpen=()=>{
             template.find(".collapsed").attr("id","collapse-"+countClass);
             template.find(".date-task").val(finishDate.getDate()+"/"+(finishDate.getMonth()+1)+"/"+finishDate.getFullYear());
             template.find(".collapsed-description span").text("No Desciption");
+            template.find(".collapsed-icon-comment img").addClass("empty");
             template.find(".collapsed-description desc-task").text("");
             template.find(".info-task-title span").text(data.title);
             template.clone().removeClass("task-container-new").removeClass("hidden").appendTo("#task-list-main").find(".date-task").datepicker({ dateFormat: 'dd/mm/yy' });
@@ -234,9 +235,11 @@ $(document).ready(function(){
         countClass+=1;
         taskPre.find(".collapsed-toogle").attr("aria-controls","collapse-"+countClass);
         taskPre.find(".collapsed").attr("id","collapse-"+countClass);
+        taskPre.find(".collapsed-icon-comment img").addClass("empty");
+        taskPre.find(".collapsed-icon-time img").addClass("empty");
         breakLine.clone().removeClass("new-break").removeClass("hidden").appendTo("#task-list-main");
-        taskPre.clone().removeClass("new-task-container-new").attr("id","task-"+newIdTask).removeClass("hidden").appendTo("#task-list-main");
-        $(".date-task, .datepicker").datepicker();
+        taskPre.clone().removeClass("new-task-container-new").attr("id","task-"+newIdTask).removeClass("hidden").find(".date-task").datepicker({onclose:function(){$(this).change()}}).closest(".task-container").appendTo("#task-list-main");
+        //$(".date-task, .datepicker").datepicker();
 
     });
     $(document).on("click",".option-delete-btn",function(){
@@ -246,7 +249,50 @@ $(document).ready(function(){
         $(this).next(".collapsed-description").find("span").toggleClass("hidden");
         $(this).next(".collapsed-description").find(".desc-task").toggleClass("hidden");
     });
-    $(document).on("change",".desc-task",function(){
-        $(this).next("span").text($(this).val());
+    $(document).on("input",".desc-task",function(){
+        if($(this).val()!==""){
+            $(this).siblings("span").text($(this).val())
+            $(this).closest(".collapsed-description").siblings(".collapsed-icon-comment").find("img").removeClass("empty")
+        }else{
+            $(this).siblings("span").text("No Description")
+            $(this).closest(".collapsed-description").siblings(".collapsed-icon-comment").find("img").addClass("empty")
+        }
+    });
+    $(document).on("change",".date-task",function(){
+        $(this).val()!=="" ? $(this).closest(".collapsed-date-time").siblings(".collapsed-icon-time").find("img").removeClass("empty"):$(this).closest(".collapsed-date-time").siblings(".collapsed-icon-time").find("img").addClass("empty")
+    });
+    $(document).on("input","#search-input",function(){
+        
+        if($(this).val()===""){
+            $(".chat-group").removeClass("hidden");
+            $(".new-chat-list").addClass("hidden")
+            $(".break").removeClass("hidden")
+            $(".new-break").addClass("hidden")
+        }else{
+            const value=$(this).val();
+            $(".chat-group").find(".chat-group-title:not(:contains("+value+"))").closest(".chat-group").addClass("hidden").next(".break").addClass("hidden")
+            $(".chat-group").find(".chat-group-title:contains("+value+")").closest(".chat-group").removeClass("hidden").next(".break").removeClass("hidden")
+            $(".new-chat-list").addClass("hidden")
+        }
+    });
+    $(document).on("click","#urgent",function(){
+        $(".task-container").find(".form-check-input:checked").closest(".task-container").addClass("hidden").next(".break").addClass("hidden");
+        $(".task-container").find(".form-check-input:not(:checked)").closest(".task-container").removeClass("hidden").next(".break").removeClass("hidden");
+        $(".new-task-container-new").addClass("hidden")
+        $(".task-container-new").addClass("hidden")
+    })
+    $(document).on("click","#errand",function(){
+        $(".task-container").removeClass("hidden").next(".break").removeClass("hidden");
+        $(".new-task-container-new").addClass("hidden")
+        $(".task-container-new").addClass("hidden")
+    });
+    $(document).on("keypress",".form-title-input",function(e){
+        if(e.which==13){
+            $(this).siblings("span").text($(this).val())
+            $(this).remove()
+        }
+    });
+    $(document).on("click",".form-check-input",function(){
+        $(this).is(":checked")?$(this).closest(".task-container").addClass("done"):$(this).closest(".task-container").removeClass("done")
     });
 });

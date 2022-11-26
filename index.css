@@ -358,3 +358,6 @@ body{
 .hide{
     transform: rotate(180deg);
 }
+.empty{
+    filter: invert(31%) sepia(0%) saturate(0%) hue-rotate(42deg) brightness(91%) contrast(87%);
+}

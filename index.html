@@ -197,9 +197,9 @@
                           My Task
                         </button>
                         <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Personal Errands</a></li>
+                          <li><a class="dropdown-item" href="#" id="errand">Personal Errands</a></li>
                           <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Urgent To-Do</a></li>
+                          <li><a class="dropdown-item" href="#" id="urgent">Urgent To-Do</a></li>
                         </ul>
                         <div></div>
                       </div>
@@ -328,7 +328,13 @@
                     <div class="info-task-countdown">100 Days left</div>
                     <div class="info-start-countdown">12/12/2022</div>
                     <div class="collapsed-toogle align-self-center flex-shrink-1"  style="max-width: 40px; flex: 1; text-align: center;" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapse-1"><img src="expand.svg"/></div>
-                    <div class="info-task-more align-self-center flex-shrink-1" style="max-width: 40px;flex: 1; text-align: center;"><img src="option.png"/></div>
+                    <div class="info-task-more align-self-center flex-shrink-1" style="max-width: 40px;flex: 1; text-align: center;">
+                        <button class="option" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="option.png" style="margin: 5px;"/>
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item option-delete-btn" href="#">Delete</a></li>
+                    </ul></div>
                 </div>
             </div>
             <div class="collapsed accordion-collapse" id="collapse-1">
@@ -351,6 +357,7 @@
                 <div class="info-task-container d-flex flex-row  flex-grow-1  justify-content-between">
                     <div class="info-task-title flex-grow-1">
                         <input class="form-title-input" placeholder="Type Task Title"/>
+                        <span style="white-space: break-spaces;"></span>
                     </div>
                     <div class="info-task-countdown"></div>
                     <div class="info-start-countdown"></div>
@@ -366,7 +373,7 @@
                 </div>
                 <div class="d-flex flex-row">
                     <div class="collapsed-icon-comment align-self-center" style="margin-right:20px;"><img src="edit_24px.svg"/></div>
-                    <div class="collapsed-description flex-grow-1"><span class="hidden"></span><textarea class="desc-task"></textarea></div>
+                    <div class="collapsed-description flex-grow-1"><span class="hidden">No Desciption</span><textarea class="desc-task"></textarea></div>
                 </div>
             </div>
         </div>
