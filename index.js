@@ -209,7 +209,6 @@ $(document).ready(function(){
     $("#btn-private").on("click",function(){
         if($(this).attr("purpose")=="edit"){
             const value=$(this).siblings("#input-private-chat").val()
-            alert(value)
             $(".comment[id-comment="+$(this).attr("id-comment")+']').find(".ballon-comment-text").text(value);
             $(this).attr("purpose","new");
             $(this).siblings("#input-private-chat").val("")
@@ -316,6 +315,6 @@ $(document).ready(function(){
         $("#input-private-chat").val(coba);
     });
     $(document).on("click",".option-reply-btn",function(){
-        
+
     });
 });
