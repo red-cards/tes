@@ -314,5 +314,8 @@ $(document).ready(function(){
         const coba=$(this).closest(".comment").find(".ballon-comment-text").text()
         
         $("#input-private-chat").val(coba);
-    })
+    });
+    $(document).on("click",".option-reply-btn",function(){
+        
+    });
 });
