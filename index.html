@@ -13,7 +13,6 @@
     <script src="index.js"></script>
     </head>
     <body>
-        <input class="datepicker" type="date"/>
         <div class="position-absolute hidden" id="box">
             <div id="chat-list" class="hidden">
                 <div class="input-group d-flex flex-row-reverse" id="search">
@@ -187,7 +186,7 @@
                 </div>
                 <div class="chat-textbox d-flex flex-row">
                     <input class="flex-grow-1" id="input-private-chat" class="chat-textbox-text" placeholder="Type a new message"/>
-                    <button id="btn-private" class="chat-textbox-btn">Send</button>
+                    <button id="btn-private" purpose="new" class="chat-textbox-btn">Send</button>
                 </div>
             </div>
             <div id="task-list"  class="hidden position-absolute start-0 top-0 d-flex flex-column ">
@@ -241,7 +240,7 @@
             </div>
         </div>
         <!-- template comment-other-->
-        <div class="d-flex flex-column prefix-comment hidden">
+        <div class="d-flex flex-column prefix-comment hidden comment">
             <div class="comment-name">
                 You
             </div>
@@ -273,7 +272,7 @@
             <div class="break align-self-center"></div>
         </div>
         <!-- template chat comment-you -->
-        <div class="d-flex flex-column prefix-comment-you hidden">
+        <div class="d-flex flex-column prefix-comment-you hidden comment">
             <div class="comment-name">
                 You
             </div>

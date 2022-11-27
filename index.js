@@ -182,7 +182,7 @@ $(document).ready(function(){
                     chatPre.find(".comment-name").text(dataUser[0].name);
                     chatPre.find(".ballon-comment-text").text(data.body);
                     chatPre.find(".ballon-comment-time").text(timeNow.getHours()+":"+timeNow.getMinutes());
-                    chatPre.clone().addClass("c-color-1").addClass("comment-other").removeClass("prefix-comment").removeClass("hidden").appendTo("#chat-isi-private");
+                    chatPre.clone().addClass("c-color-1").addClass("comment-other").attr("id-comment",index).removeClass("prefix-comment").removeClass("hidden").appendTo("#chat-isi-private");
                 });
             });
         });
@@ -207,17 +207,29 @@ $(document).ready(function(){
         valChat!=="" ? chatPre.clone().removeClass("prefix-comment-you").removeClass("hidden").appendTo("#group-chat .chat-isi") : console.log("kosong");
     });
     $("#btn-private").on("click",function(){
-        const chatPre=$(".prefix-comment-you");
-        const valChat=$("#input-private-chat").val();
-        const timeNow= new Date;       
+        if($(this).attr("purpose")=="edit"){
+            const value=$(this).siblings("#input-private-chat").val()
+            alert(value)
+            $(".comment[id-comment="+$(this).attr("id-comment")+']').find(".ballon-comment-text").text(value);
+            $(this).attr("purpose","new");
+            $(this).siblings("#input-private-chat").val("")
+        }else{
+            const chatPre=$(".prefix-comment-you");
+            const valChat=$("#input-private-chat").val();
+            const timeNow= new Date;       
+            let idcomment = $(".comment[id-comment]").map(function() {
+                return $(this).attr("id-comment");
+            }).get();
+            let highest=Math.max.apply(Math,idcomment);
+            
+            chatPre.find(".comment-name").text("You");
+            chatPre.find(".ballon-comment-text").text(valChat);
+            chatPre.find(".ballon-comment-time").text(timeNow.getHours()+":"+timeNow.getMinutes());
+            chatPre.addClass("comment-me");
+            $("#input-private-chat").val("");
 
-        chatPre.find(".comment-name").text("You");
-        chatPre.find(".ballon-comment-text").text(valChat);
-        chatPre.find(".ballon-comment-time").text(timeNow.getHours()+":"+timeNow.getMinutes());
-        chatPre.addClass("comment-me");
-        $("#input-private-chat").val("");
-
-        valChat!=="" ? chatPre.clone().removeClass("prefix-comment-you").removeClass("hidden").appendTo("#private-chat .chat-isi") : console.log("kosong");
+            valChat!=="" ? chatPre.clone().removeClass("prefix-comment-you").attr("id-comment",highest+1).removeClass("hidden").appendTo("#private-chat .chat-isi") : console.log("kosong");
+        }
     });
 
     $(".chat-header-close").on("click",function(){
@@ -295,4 +307,12 @@ $(document).ready(function(){
     $(document).on("click",".form-check-input",function(){
         $(this).is(":checked")?$(this).closest(".task-container").addClass("done"):$(this).closest(".task-container").removeClass("done")
     });
+    $(document).on("click",".option-edit-btn",function(){
+        const idEdit=$(this).closest(".comment").attr("id-comment");
+        $("#btn-private").attr("id-comment",idEdit);
+        $("#btn-private").attr("purpose","edit");
+        const coba=$(this).closest(".comment").find(".ballon-comment-text").text()
+        
+        $("#input-private-chat").val(coba);
+    })
 });
