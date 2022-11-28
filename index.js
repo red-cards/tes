@@ -388,4 +388,10 @@ $(document).ready(function(){
         $(this).closest(".chat-chat").find(".chat-isi").animate({scrollTop:$(this).closest(".chat-chat").find(".break-new").offset().top},"slow")
         $(this).remove();
     });
+    $(document).on("click",".option-delete-btn-task",function(){
+        $(this).closest(".task-container").next(".break").remove()
+        $(this).closest(".task-container").remove()
+
+    });
 });
+
