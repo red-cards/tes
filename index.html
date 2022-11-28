@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            <div id="group-chat" class="position-absolute start-0 top-0 d-flex flex-column hidden" >
+            <div id="group-chat" class="position-absolute start-0 top-0 d-flex flex-column hidden chat-chat" >
                 <div class="chat-header">
                     <div class="chat-header-main d-flex flex-row" style="padding: 24px;">
                         <div class="chat-header-back">
@@ -47,7 +47,7 @@
                     </div>
                     <div class="break"></div>
                 </div>
-                <div id="isi-group-chat" class="chat-isi flex-grow-1 d-flex flex-column position-relative">
+                <div id="chat-isi-group" class="chat-isi flex-grow-1 d-flex flex-column position-relative">
                     <div class="comment-other c-color-1 d-flex flex-column">
                         <div class="comment-name">
                             Adi Nugroho
@@ -111,14 +111,14 @@
                             </div>
                         </div>
                     </div>
-                    <div id="new-notif" class="position-absolute">New Message</div>
+                    
                 </div>
                 <div class="chat-textbox d-flex flex-row">
-                    <input class="flex-grow-1" id="input-group-chat" class="chat-textbox-text" placeholder="Type a new message"/>
+                    <input class="flex-grow-1 chat-textbox-text" id="input-group-chat" placeholder="Type a new message"/>
                     <button id="btn-group" class="chat-textbox-btn">Send</button>
                 </div>
             </div>
-            <div id="private-chat"  class="position-absolute start-0 top-0 d-flex flex-column hidden">
+            <div id="private-chat"  class="position-absolute start-0 top-0 d-flex flex-column hidden chat-chat">
                 <div class="chat-header">
                     <div class="chat-header-main d-flex flex-row" style="padding: 24px;">
                         <div class="chat-header-back">
@@ -185,8 +185,8 @@
                     </span>
                 </div>
                 <div class="chat-textbox d-flex flex-row">
-                    <input class="flex-grow-1" id="input-private-chat" class="chat-textbox-text" placeholder="Type a new message"/>
-                    <button id="btn-private" purpose="new" class="chat-textbox-btn">Send</button>
+                    <input class="flex-grow-1 chat-textbox-text" id="input-private-chat" placeholder="Type a new message"/>
+                    <button id="btn-private"  purpose="new" class="chat-textbox-btn">Send</button>
                 </div>
             </div>
             <div id="task-list"  class="hidden position-absolute start-0 top-0 d-flex flex-column ">
@@ -206,7 +206,7 @@
                 </div>
                 <div id="task-list-main" class="flex-grow-1 position-relative">
                     <div id="task-detail" class="position-absolute start-0 top-0 d-flex flex-column"></div>
-                    <div class="align-middle d-flex flex-column justify-content-center loading hidden">
+                    <div id="loading-task" class="align-middle d-flex flex-column justify-content-center loading hidden">
                         <img id="i-loading" class="i-loading rotating" src="loading.png"/>
                         <span>Loading Task List...</span>
                     </div>
@@ -314,6 +314,23 @@
                 </div>
             </div>
         </div>
+        <!-- template chat list support-->
+        <div class="chat-support new-chat-support d-flex position-relative hidden">
+            <div class="chat-group-photo position-relative" style="width: 51px;height: 34px;margin-right:16px">
+                <div class="pp-size position-absolute end-0" style="background-color: #2F80ED;"><img src="person_putih.png" style="height: 12px;width: 12px; margin:11px;"/></div>
+            </div>
+            <div class="chat-group-body flex-grow-1 d-flex flex-column">
+                <div class="d-flex flex-row">
+                    <div class="chat-group-title">Fast Visa Support</div>
+                    <div class="chat-group-date" style="margin-left: 16px;">adfpasdkfopakf</div>
+                </div>
+                <div class="chat-group-last-c">aoskpasodkfpoaskf</div>
+            </div>
+            <div class="chat-group-notif position-relative">
+                <div style="height:10px;width: 10px;background-color: red;border-radius:10px;right: 10px;" class="position-absolute bottom-0">
+                </div>
+            </div>
+        </div>
         <!-- TEMPLATE TASK KONTAINER-->
         <div class="task-container hidden task-container-new">
             <div class="header-task-container d-flex flex-row">
@@ -376,5 +393,6 @@
                 </div>
             </div>
         </div>
+        <div class="position-absolute hidden new-notif notif">New Message</div>
     </body>
 </html>

@@ -37,11 +37,19 @@ const fabClose=()=>{
 const chatOpen=()=>{
     fabT=false;
     $("#chat-list").removeClass("hidden");
-    $("task-list").addClass("hidden");
+    $("#task-list").addClass("hidden");
     $("#box").removeClass("hidden");
     $("#loading-chat").removeClass("hidden");
     $("#fab-chat-active").removeClass("hidden");
     $("#fab-chat").addClass("hidden");
+    $("#isi-chat").empty();
+    const timeNow= new Date;
+    const breakLine=$(".new-break");
+    const support=$(".new-chat-support");
+    support.find(".chat-group-date").text(timeNow.getDay()+"/"+timeNow.getMonth()+"/"+timeNow.getFullYear());
+    support.find(".chat-group-last-c").text("Welcome to Your Inbox");
+    support.clone().removeClass("new-chat-suppot").removeClass("hidden").addClass("chat-container").appendTo("#isi-chat");
+    breakLine.clone().removeClass("new-break").removeClass("hidden").appendTo("#isi-chat");
     $.getJSON( "https://jsonplaceholder.typicode.com/users", function( datas ) {
         const temp=[];
         const reverseData=datas.reverse();
@@ -49,7 +57,7 @@ const chatOpen=()=>{
         //const listChat=reverseListChat.reverse();
         reverseData.map((chat,index)=>{
             $.getJSON("https://jsonplaceholder.typicode.com/posts?userId="+chat.id,function(datas){
-                const timeNow= new Date;    
+                
                 const template=$(".new-chat-list");
                 
                 template.find(".chat-group-title").text(chat.username);
@@ -58,7 +66,7 @@ const chatOpen=()=>{
                 template.find(".chat-group-last-c").text(datas[datas.length-1].body);
                 const breakLine=$(".new-break");
 
-                template.clone().removeClass("new-chat-list").removeClass("hidden").attr("id","chat-"+chat.id).attr("id-chat",chat.id).appendTo("#isi-chat");
+                template.clone().removeClass("new-chat-list").removeClass("hidden").addClass("chat-container").attr("id","chat-"+chat.id).attr("id-chat",chat.id).appendTo("#isi-chat");
                 breakLine.clone().removeClass("new-break").removeClass("hidden").appendTo("#isi-chat");
             });
             
@@ -74,6 +82,7 @@ const chatClose=()=>{
 }
 const taskOpen=()=>{
     fabT=false;
+    $("#loading-task").removeClass("hidden");
     $("#chat-list").addClass("hidden");
     $("#task-list").removeClass("hidden");
     $("#box").removeClass("hidden");
@@ -113,7 +122,9 @@ const taskOpen=()=>{
             template.removeClass("done");
             template.find(".form-check-input").prop("checked",false);
         });
+        $("#loading-task").addClass("hidden");
     });
+    
 }
 
 //close task tab
@@ -162,8 +173,7 @@ $(document).ready(function(){
     $("#fab-task-active").on("click",function(){
         allClose();
     });
-    $(document).on("click",".chat-group",function(){
-        
+    $(document).on("click",".chat-support",function(){
         const idChat=$(this).attr("id-chat");
         const timeNow= new Date;
         const breakDate=$(".prefix-break-date");
@@ -175,18 +185,43 @@ $(document).ready(function(){
             breakDate.find(".break-date-d").text(timeNow.getDay()+"/"+timeNow.getMonth()+"/"+timeNow.getFullYear());
             breakNew.clone().removeClass("prefix-break-new").removeClass("hidden").appendTo("#chat-isi-private");
             breakDate.clone().removeClass("prefix-break-date").removeClass("hidden").appendTo("#chat-isi-private");   
+            $("#private-chat").find(".chat-header-title").text("Fast Visa Support");
+            const chatPre=$(".prefix-comment");
+            chatPre.find(".comment-name").text("Fast Visa Support");
+            chatPre.find(".ballon-comment-text").text("Welcome in your text box");
+            chatPre.find(".ballon-comment-time").text(timeNow.getHours()+":"+timeNow.getMinutes());
+            chatPre.clone().addClass("c-color-1").addClass("comment-other").attr("id-comment","1").removeClass("prefix-comment").removeClass("hidden").appendTo("#chat-isi-private");
+        });
+        $("#private-chat").removeClass("hidden");
+    });
+    
+    $(document).on("click",".chat-group",function(){
+        
+        const idChat=$(this).attr("id-chat");
+        const timeNow= new Date;
+        const breakDate=$(".prefix-break-date");
+        const breakNew=$(".prefix-break-new");
+        
+        $("#chat-isi-group").empty();
+        
+        $.getJSON( "https://jsonplaceholder.typicode.com/posts?userId="+idChat, function( datas ) {
+            breakDate.find(".break-date-d").text(timeNow.getDay()+"/"+timeNow.getMonth()+"/"+timeNow.getFullYear());
+            breakNew.clone().removeClass("prefix-break-new").removeClass("hidden").appendTo("#chat-isi-group");
+            breakDate.clone().removeClass("prefix-break-date").removeClass("hidden").appendTo("#chat-isi-group");   
+            let cColor=1;
             datas.map((data,index)=>{
                 $.getJSON( "https://jsonplaceholder.typicode.com/users?id="+idChat, function( dataUser ) {
-                    $("#private-chat").find(".chat-header-title").text(dataUser[0].name);
+                    $("#group-chat").find(".chat-header-title").text(dataUser[0].name);
                     const chatPre=$(".prefix-comment");
                     chatPre.find(".comment-name").text(dataUser[0].name);
                     chatPre.find(".ballon-comment-text").text(data.body);
                     chatPre.find(".ballon-comment-time").text(timeNow.getHours()+":"+timeNow.getMinutes());
-                    chatPre.clone().addClass("c-color-1").addClass("comment-other").attr("id-comment",index).removeClass("prefix-comment").removeClass("hidden").appendTo("#chat-isi-private");
+                    chatPre.clone().addClass("c-color-"+cColor).addClass("comment-other").attr("id-comment",index).removeClass("prefix-comment").removeClass("hidden").appendTo("#chat-isi-group");
+                    cColor==1?cColor=2:cColor=1;
                 });
             });
         });
-        $("#private-chat").removeClass("hidden");
+        $("#group-chat").removeClass("hidden");
     });
     $(".chat-header-back").on("click",function(){
         $("#isi-group-chat").empty();
@@ -194,18 +229,40 @@ $(document).ready(function(){
         $("#private-chat").addClass("hidden");
     });
     $("#btn-group").on("click",function(){
-        const chatPre=$(".prefix-comment-you");
-        const valChat=$("#input-group-chat").val();
-        const timeNow= new Date;       
-
-        chatPre.find(".comment-name").text("You");
-        chatPre.find(".ballon-comment-text").text(valChat);
-        chatPre.find(".ballon-comment-time").text(timeNow.getHours()+":"+timeNow.getMinutes());
-        chatPre.addClass("comment-me");
-        $("#input-group-chat").val("");
-
-        valChat!=="" ? chatPre.clone().removeClass("prefix-comment-you").removeClass("hidden").appendTo("#group-chat .chat-isi") : console.log("kosong");
+        if($(this).attr("purpose")=="edit"){
+            const value=$(this).siblings("#input-group-chat").val()
+            $(".comment[id-comment="+$(this).attr("id-comment")+']').find(".ballon-comment-text").text(value);
+            $(this).attr("purpose","new");
+            $(this).siblings("#input-group-chat").val("")
+        }else{
+            const chatPre=$(".prefix-comment-you");
+            const valChat=$("#input-group-chat").val();
+            const timeNow= new Date;       
+            let idcomment = $(".comment[id-comment]").map(function() {
+                return $(this).attr("id-comment");
+            }).get();
+            let highest=Math.max.apply(Math,idcomment);
+            $("#group-chat").find(".break-new").remove();
+            chatPre.find(".comment-name").text("You");
+            chatPre.find(".ballon-comment-text").text(valChat);
+            chatPre.find(".ballon-comment-time").text(timeNow.getHours()+":"+timeNow.getMinutes());
+            chatPre.addClass("comment-me");
+            $("#input-group-chat").val("");
+            const breakNew=$(".prefix-break-new");
+            $("#group-chat .chat-isi").find(".break-new").remove()
+            const newNotif=$(".new-notif");
+            console.log(newNotif);
+            
+            if(valChat!==""){
+                newNotif.clone().removeClass("new-notif").removeClass("hidden").appendTo("#group-chat");
+                breakNew.clone().removeClass("prefix-break-new").removeClass("hidden").appendTo("#group-chat .chat-isi");
+                chatPre.clone().removeClass("prefix-comment-you").attr("id-comment",highest+1).removeClass("hidden").appendTo("#group-chat .chat-isi")
+            }else{
+                console.log("kosong");
+            }
+        }
     });
+
     $("#btn-private").on("click",function(){
         if($(this).attr("purpose")=="edit"){
             const value=$(this).siblings("#input-private-chat").val()
@@ -226,8 +283,19 @@ $(document).ready(function(){
             chatPre.find(".ballon-comment-time").text(timeNow.getHours()+":"+timeNow.getMinutes());
             chatPre.addClass("comment-me");
             $("#input-private-chat").val("");
+            const breakNew=$(".prefix-break-new");
+            $("#private-chat .chat-isi").find(".break-new").remove()
+            const newNotif=$(".new-notif");
+                
+            
+            if(valChat!==""){
+                newNotif.clone().removeClass("new-notif").removeClass("hidden").appendTo("#private-chat");
+                breakNew.clone().removeClass("prefix-break-new").removeClass("hidden").appendTo("#private-chat .chat-isi");
+                chatPre.clone().removeClass("prefix-comment-you").attr("id-comment",highest+1).removeClass("hidden").appendTo("#private-chat .chat-isi")
 
-            valChat!=="" ? chatPre.clone().removeClass("prefix-comment-you").attr("id-comment",highest+1).removeClass("hidden").appendTo("#private-chat .chat-isi") : console.log("kosong");
+            }else{
+                console.log("kosong");
+            }
         }
     });
 
@@ -272,17 +340,16 @@ $(document).ready(function(){
     $(document).on("change",".date-task",function(){
         $(this).val()!=="" ? $(this).closest(".collapsed-date-time").siblings(".collapsed-icon-time").find("img").removeClass("empty"):$(this).closest(".collapsed-date-time").siblings(".collapsed-icon-time").find("img").addClass("empty")
     });
-    $(document).on("input","#search-input",function(){
-        
+    $(document).on("input","#search-input",function(){        
         if($(this).val()===""){
-            $(".chat-group").removeClass("hidden");
+            $(".chat-container").removeClass("hidden");
             $(".new-chat-list").addClass("hidden")
             $(".break").removeClass("hidden")
             $(".new-break").addClass("hidden")
         }else{
             const value=$(this).val();
-            $(".chat-group").find(".chat-group-title:not(:contains("+value+"))").closest(".chat-group").addClass("hidden").next(".break").addClass("hidden")
-            $(".chat-group").find(".chat-group-title:contains("+value+")").closest(".chat-group").removeClass("hidden").next(".break").removeClass("hidden")
+            $(".chat-container").find(".chat-group-title:not(:contains("+value+"))").closest(".chat-container").addClass("hidden").next(".break").addClass("hidden")
+            $(".chat-container").find(".chat-group-title:contains("+value+")").closest(".chat-container").removeClass("hidden").next(".break").removeClass("hidden")
             $(".new-chat-list").addClass("hidden")
         }
     });
@@ -308,13 +375,17 @@ $(document).ready(function(){
     });
     $(document).on("click",".option-edit-btn",function(){
         const idEdit=$(this).closest(".comment").attr("id-comment");
-        $("#btn-private").attr("id-comment",idEdit);
-        $("#btn-private").attr("purpose","edit");
+        $(this).closest(".chat-chat").find(".chat-textbox-btn").attr("id-comment",idEdit);
+        $(this).closest(".chat-chat").find(".chat-textbox-btn").attr("purpose","edit");
         const coba=$(this).closest(".comment").find(".ballon-comment-text").text()
         
-        $("#input-private-chat").val(coba);
+        $(this).closest(".chat-chat").find(".chat-textbox-text").val(coba);
     });
     $(document).on("click",".option-reply-btn",function(){
 
+    });
+    $(document).on("click",".notif",function(){
+        $(this).closest(".chat-chat").find(".chat-isi").animate({scrollTop:$(this).closest(".chat-chat").find(".break-new").offset().top},"slow")
+        $(this).remove();
     });
 });

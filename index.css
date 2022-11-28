@@ -37,6 +37,9 @@ body{
 .chat-group{
     margin: 22px 0;
 }
+.chat-support{
+    margin: 22px 0;
+}
 .chat-private{
     margin: 22px 0;
 }
@@ -88,8 +91,8 @@ body{
     font-family: "lotoBold";
     font-size: 16px;
 }
-#new-notif{
-    bottom: 0;
+.notif{
+    bottom: 70px;
     left: 50%;
     margin-left: -5%;
     background-color: #E9F3FF;
